@@ -1,0 +1,2 @@
+module TradespeopleHelper
+end

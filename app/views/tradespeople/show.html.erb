@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @tradesperson.name %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @tradesperson.phone %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @tradesperson.address %>
+</p>
+
+<p>
+  <b>Fullyqualified:</b>
+  <%= @tradesperson.fullyQualified %>
+</p>
+
+<p>
+  <b>Trade:</b>
+  <%= @tradesperson.trade.name %>
+</p>
+
+<p>
+  <b>Photo:</b>
+  <%= image_tag(@tradesperson.photo, :alt => "My Photo", :size => "50x50") %>
+</p>
+
+
+<%= link_to 'Edit', edit_tradesperson_path(@tradesperson) %> |
+<%= link_to 'Back', tradespeople_path %>

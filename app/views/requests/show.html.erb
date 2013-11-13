@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<p>
+  <b>Trade:</b>
+  <%= @request.trade.name %>
+</p>
+
+<p>
+  <b>Desription:</b>
+  <%= @request.desription %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @request.location %>
+</p>
+
+<p>
+  <b>Startdate:</b>
+  <%= @request.startDate %>
+</p>
+
+<p>
+  <b>Tradesperson:</b>
+  <%= @request.tradesperson.name %>
+</p>
+
+<p>
+  <b>Customer:</b>
+  <%= @request.customer.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_request_path(@request) %> |
+<%= link_to 'Back', requests_path %>

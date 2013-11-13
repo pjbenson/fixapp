@@ -1,0 +1,29 @@
+<h1>Listing customers</h1>
+
+<table cellspacing = 20>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Photo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @customers.each do |customer| %>
+  <tr>
+    <td><%= link_to customer.name, customer  %></td>
+    <td><%= customer.address %></td>
+    <td><%= customer.phone %></td>
+    <td><%= customer.email %></td>
+    <td><%= image_tag(customer.photo, :size => '50x50') %></td>
+    <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+    <td><%= link_to 'Destroy', customer, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+<%= link_to 'New Customer', new_customer_path %>
+<br />
+

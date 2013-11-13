@@ -1,0 +1,30 @@
+<h1 align="center">Listing requests</h1>
+<table cellspacing = 20>
+  <tr>
+	<th>Customer</th>
+    <th>Trade Required</th>
+    <th>Desription</th>
+    <th>Location</th>
+    <th>Startdate</th>
+    <th>Tradesperson</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @requests.each do |request| %>
+  <tr>
+	<td><%= request.customer.name %></td>
+    <td><%= request.trade.name %></td>
+    <td><%= request.desription %></td>
+    <td><%= request.location %></td>
+    <td><%= request.startDate %></td>
+    <td><%= request.tradesperson.name %></td>
+    <td><%= link_to 'Edit', edit_request_path(request) %></td>
+	<td><%= link_to 'Destroy', request, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= link_to 'Make New Request', new_request_path %>

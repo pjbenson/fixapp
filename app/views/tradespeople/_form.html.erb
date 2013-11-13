@@ -1,0 +1,53 @@
+<%= form_for(@tradesperson) do |f| %>
+  <% if @tradesperson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tradesperson.errors.count, "error") %> prohibited this tradesperson from being saved:</h2>
+
+      <ul>
+      <% @tradesperson.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div
+  <div class="field">
+    <%= f.label :photo %><br />
+    <%= f.text_field :photo %>
+  </div>
+  <div class="field">
+    <%= f.label :fullyQualified %><br />
+    <%= f.check_box :fullyQualified %>
+  </div>
+  <div class="field">
+    <%= f.label :trade_id %><br />
+    <%= f.collection_select :trade_id, Trade.all, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field"> 
+   <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

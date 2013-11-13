@@ -1,0 +1,28 @@
+<h1 align="center">Tradesperson requests</h1>
+
+<% signed_in %>
+<table cellspacing = 20>
+  <tr>
+    <th>Customer</th>
+    <th>Desription</th>
+    <th>Location</th>
+    <th>Startdate</th>
+    <th>Customer Email</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  
+  <% @requests.each do |request| %>
+  <tr>
+    <td><%= request.customer.name %></td>
+    <td><%= request.request.desription %></td>
+    <td><%= request.request.location %></td>
+    <td><%= request.request.startDate %></td>
+    <td><%= request.customer.email %></td>
+    <td><%= link_to 'Show', request %></td>
+    <td><%= link_to 'Destroy', request, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+<% end %>
+</table>

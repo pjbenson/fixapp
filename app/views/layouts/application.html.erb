@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fixapp</title>
+  <%= stylesheet_link_tag  "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+<div id="banner">
+	<%= image_tag("cursor.jpg", :size => "100x50") %>
+	<%= @page_title || "Fix with a Click" %>
+</div>
+
+<div id="nav" align="center">
+	<ul>
+	<% if !signed_in? %>
+		<li><%= link_to "Sign In", signin_path %></li>
+		<li><%= link_to "Trades Available", trades_path %></li>
+		<li><%= link_to "Home", root_path%></li>
+		<li><%= link_to "About", about_path%></li>
+		
+	  <%else%>
+		<li>Signed in as <%= @current_customer.name %></li>
+		<li><%= link_to "Sign Out", signout_path%></li>
+		<li><%= link_to "Tradespeople", tradespeople_path%></li>
+		<li><%= link_to "Requests", requests_path%></li>
+		<li><%= link_to "Home", @current_customer %></li>
+	  <%end%>
+    </ul>
+</div>
+
+
+<%= yield %>
+
+</body>
+</html>
