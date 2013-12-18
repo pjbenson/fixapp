@@ -1,28 +1,25 @@
-<h1 align="center">Tradesperson requests</h1>
-
-<% signed_in %>
-<table cellspacing = 20>
-  <tr>
-    <th>Customer</th>
-    <th>Desription</th>
-    <th>Location</th>
-    <th>Startdate</th>
-    <th>Customer Email</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  
-  <% @requests.each do |request| %>
-  <tr>
-    <td><%= request.customer.name %></td>
-    <td><%= request.request.desription %></td>
-    <td><%= request.request.location %></td>
-    <td><%= request.request.startDate %></td>
-    <td><%= request.customer.email %></td>
-    <td><%= link_to 'Show', request %></td>
-    <td><%= link_to 'Destroy', request, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-<% end %>
-</table>
+<p>
+	<table border="1">
+		<tr>
+		<th>Customer Name</th>
+		<th>Location</th>
+		<th>Description</th>
+		<th>Start Date</th>
+		</tr>
+	<% if !@tradesperson.requests.empty? %>
+		<b>Requests for <%= @tradesperson.name %> </b> <br \>
+		<% @tradesperson.requests.each do |request| %>
+		<tr>
+		<td><%= request.customer.name %></td>
+		<td><%= request.customer.address %></td>
+		<td><%= request.desription %></td>
+		<td><%= request.startDate %></td>
+		
+	<% end %>
+		</tr>
+		</table>
+		
+		<% else %>
+		<b>No Requests
+		<% end %>
+</p>

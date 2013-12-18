@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>Fixapp</title>
-  <%= stylesheet_link_tag  "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css",  "application", :media => "all" %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "application" %>
   <%= csrf_meta_tags %>
 </head>
 
@@ -12,28 +12,39 @@
 <div id="banner">
 	<%= image_tag("cursor.jpg", :size => "100x50") %>
 	<%= @page_title || "Fix with a Click" %>
+	<%="paul benson"%>
 </div>
 
 <div id="nav" align="center">
 	<ul>
-	<% if !signed_in? %>
-		<li><%= link_to "Sign In", signin_path %></li>
+	<% if !trsigned_in? and !signed_in?%>
+		<li><%= link_to "Customer Sign In", signin_path %></li>
+		<li><%= link_to "Trades Person Sign In", trsignin_path %></li>
 		<li><%= link_to "Trades Available", trades_path %></li>
 		<li><%= link_to "Home", root_path%></li>
 		<li><%= link_to "About", about_path%></li>
-		
-	  <%else%>
+	<%end%>	
+	<% if trsigned_in?%>
+		<li>Signed in as <%= @current_tr.name %></li>
+		<li><%= link_to "Sign Out", trsignout_path%></li>
+		<li><%= link_to "My Profile", @current_tr%></li>
+		<li><%= link_to "View Requests", tradespeopleRequests_path%></li>
+		<li><%= link_to "Home", root_path %></li>
+	<%end%>
+	<% if signed_in?%>
 		<li>Signed in as <%= @current_customer.name %></li>
 		<li><%= link_to "Sign Out", signout_path%></li>
-		<li><%= link_to "Tradespeople", tradespeople_path%></li>
-		<li><%= link_to "Requests", requests_path%></li>
-		<li><%= link_to "Home", @current_customer %></li>
-	  <%end%>
+		<li><%= link_to "My Profile", @current_customer%></li>
+		<li><%= link_to "Make New Request", new_request_path%></li>
+		<li><%= link_to "View Requests", viewRequests_path%></li>
+		<li><%= link_to "View Tradespeople", tradespeople_path%></li>
+		<li><%= link_to "Home", root_path %></li>
+	<%end%>
     </ul>
 </div>
 
 
 <%= yield %>
-
+<p style="color: red"><%= flash[:error] %></p>
 </body>
 </html>

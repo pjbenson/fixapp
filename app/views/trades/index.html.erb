@@ -1,5 +1,4 @@
 <h1 align="center">Listing trades</h1>
-
 <table cellspacing = 20 align="center">
   <tr>
     <th>Name</th>
@@ -12,7 +11,7 @@
 <% @trades.each do |trade| %>
   <tr>
     <td><%= trade.name %></td>
-    <td><%= trade.price %></td>
+    <td><%= euro(trade.price) %></td>
     <td><%= link_to 'Edit', edit_trade_path(trade) %></td>
 	<td><%= link_to 'Destroy', trade, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
@@ -20,5 +19,6 @@
 </table>
 
 <br />
-
+<% if trsigned_in? %>
 <%= link_to 'New Trade', new_trade_path %>
+<% end %>

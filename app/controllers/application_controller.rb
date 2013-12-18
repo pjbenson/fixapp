@@ -2,8 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   include ApplicationHelper
-  
-  #before_filter :authorise, :only => [:new, :edit, :delete]
    
    def authorise
 	unless signed_in?

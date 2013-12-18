@@ -1,4 +1,5 @@
 Fixapp::Application.routes.draw do
+
   get "sessions/new"
 
   get "sessions/create"
@@ -13,14 +14,31 @@ Fixapp::Application.routes.draw do
   
   get "pages/tradespeopleRequests"
   
+  get "pages/viewRequests"
+  
+  
+  resources :tradespeople do
+	resources :posts
+  end
+  
+  match '/search' => 'tradespeople#search'
+  
   match '/tradespeopleRequests' => 'pages#tradespeopleRequests'
   
   match '/about' => 'pages#about'
+  
+  match '/viewRequests' => 'pages#viewRequests'
   
   match '/signin' => 'sessions#new'
   
   match '/signout' => 'sessions#destroy'   #controller#methodname
 
+  match '/trsignout' => 'sessions#destroytr'
+  
+  match '/createtr' => 'sessions#createtr'
+  
+  match '/trsignin' => 'sessions#newtr'
+  
   resources :requests
 
   resources :customers

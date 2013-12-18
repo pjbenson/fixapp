@@ -1,20 +1,44 @@
 <p id="notice"><%= notice %></p>
 
-
-
 <p>
-  <b>Trade:</b>
-  <%= @request.trade.name %>
+  <b>Customer:</b>
+  <%= @request.customer.name %>
 </p>
 
 <p>
-  <b>Desription:</b>
+  <b>Customer Location:</b>
+  <%= @customer.address %>
+</p>
+
+
+<p>
+  <b>Trade Required:</b>
+  <%= @request.tradesperson.trade.name %>
+</p>
+
+<p>
+  <b>Tradesperson Chosen:</b>
+  <table border="1">
+		<tr>
+		<th>Name</th>
+		<th>Trade</th>
+		<th>Location</th>
+		<th>Price/hour</th>
+		<th>Phone</th>
+		</tr>
+		<tr>
+		<td><%= @request.tradesperson.name %></td>
+		<td><%= @request.tradesperson.trade.name %></td>
+		<td><%= @request.tradesperson.address %></td>
+		<td><%= @request.tradesperson.trade.price %></td>
+		<td><%= @request.tradesperson.phone %></td>
+		</tr>
+		</table>
+</p>
+
+<p>
+  <b>Job Desription:</b>
   <%= @request.desription %>
-</p>
-
-<p>
-  <b>Location:</b>
-  <%= @request.location %>
 </p>
 
 <p>
@@ -23,15 +47,8 @@
 </p>
 
 <p>
-  <b>Tradesperson:</b>
-  <%= @request.tradesperson.name %>
+	<h2> <%= @request.tradesperson.name %> will contact you in the next few minutes</h2>
 </p>
-
-<p>
-  <b>Customer:</b>
-  <%= @request.customer.name %>
-</p>
-
 
 <%= link_to 'Edit', edit_request_path(@request) %> |
-<%= link_to 'Back', requests_path %>
+

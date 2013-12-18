@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <b>Trade:</b>
+  <%= @tradesperson.trade.name %>
+</p>
+
+<p>
   <b>Phone:</b>
   <%= @tradesperson.phone %>
 </p>
@@ -14,22 +19,54 @@
   <b>Address:</b>
   <%= @tradesperson.address %>
 </p>
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@tradesperson.latitude}%2C#{@tradesperson.longitude}" %>
 
 <p>
-  <b>Fullyqualified:</b>
-  <%= @tradesperson.fullyQualified %>
+  <b>Email:</b>
+  <%= @tradesperson.email %>
 </p>
 
 <p>
-  <b>Trade:</b>
-  <%= @tradesperson.trade.name %>
+  <b>Fullyqualified:</b>
+  <%= fullyQualified(@tradesperson.fullyQualified) %>
 </p>
 
 <p>
   <b>Photo:</b>
   <%= image_tag(@tradesperson.photo, :alt => "My Photo", :size => "50x50") %>
 </p>
+	
+	<% if signed_in? %>
+		<h2> please leave a comment</h2>
+		<%= form_for([@tradesperson, Post.new], :remote=> true) do |f| %>
+			<%= f.text_area :content, :rows => 3 %>
+		<div class = "actions">
+			<%= f.submit "Post a comment" %>
+		</div>
+		<%end%>
+	<%end%>
+
+	<% if @tradesperson.posts.empty? and signed_in? %>
+		<h3> You are the first to comment </h3>
+	<% elsif trsigned_in? %>
+		<h2> Comments:</h2>
+		<div id="posts">
+		<% @tradesperson.posts.reverse.each do |post| %>
+			<p><%= post.content %>
+			Posted <%= time_ago_in_words(post.created_at) %> ago			   
+		<%end%>
+		</div>
+	<% elsif signed_in? %>
+		<h2> Comments:</h2>
+		<div id="posts">
+			<% @tradesperson.posts.reverse.each do |post| %>
+				<p><%= post.content %>
+				Posted <%= time_ago_in_words(post.created_at) %> ago by
+				<%= @current_customer.name  %>  </p>		   
+			<%end%>
+		</div>
+	<%end%> 
 
 
 <%= link_to 'Edit', edit_tradesperson_path(@tradesperson) %> |
-<%= link_to 'Back', tradespeople_path %>
+

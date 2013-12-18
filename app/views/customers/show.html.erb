@@ -9,6 +9,7 @@
   <b>Address:</b>
   <%= @customer.address %>
 </p>
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@customer.latitude}%2C#{@customer.longitude}" %>
 
 <p>
   <b>Phone:</b>
@@ -26,5 +27,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Make New Request', new_request_path %>
+<%= link_to 'Edit', edit_customer_path(@customer) %> 
+

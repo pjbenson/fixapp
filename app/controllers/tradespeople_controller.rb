@@ -1,8 +1,17 @@
 class TradespeopleController < ApplicationController
+	#before_filter :authorise
   # GET /tradespeople
   # GET /tradespeople.json
+  
+  def search
+	@tradespeople = Tradesperson.paginate(:page => params[:page], :per_page => 6).search params[:q]
+	render 'index'             
+  end
+
+  
   def index
     @tradespeople = Tradesperson.all
+	@tradespeople = Tradesperson.paginate(:page => params[:page], :per_page => 6)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,6 +53,7 @@ class TradespeopleController < ApplicationController
 
     respond_to do |format|
       if @tradesperson.save
+		Blogmailer.trRegister(@tradesperson).deliver
         format.html { redirect_to @tradesperson, notice: 'Tradesperson was successfully created.' }
         format.json { render json: @tradesperson, status: :created, location: @tradesperson }
       else

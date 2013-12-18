@@ -1,5 +1,10 @@
 <h1>Listing tradespeople</h1>
 
+<div id="search">
+	<%= render :partial => "tradespeople/search" %>
+</div>
+
+<% will_paginate @tradespeople %>
 <table cellspacing = 20>
   <tr>
     <th>Name</th>
@@ -17,20 +22,19 @@
 
 <% @tradespeople.each do |tradesperson| %>
   <tr>
-    <td><%= tradesperson.name %></td>
+    <td><%= link_to tradesperson.name, tradesperson %></td>
     <td><%= tradesperson.phone %></td>
     <td><%= tradesperson.address %></td>
 	<td><%= tradesperson.email %></td>
-    <td><%= tradesperson.fullyQualified %></td>
+    <td><%= fullyQualified(tradesperson.fullyQualified) %></td>
     <td><%= tradesperson.trade.name %></td>
-	<td><%= tradesperson.trade.price %></td>
+	<td><%= euro(tradesperson.trade.price) %></td>
 	<td><%= image_tag(tradesperson.photo, :size => '50x50') %></td>
     <td><%= link_to 'Show', tradesperson %></td>
     <td><%= link_to 'Edit', edit_tradesperson_path(tradesperson) %></td>
   </tr>
 <% end %>
 </table>
+<% if trsigned_in? %>
 <%= link_to 'New Tradesperson', new_tradesperson_path %>
-<br />
-
-<%= link_to 'View Requests', tradespeopleRequests_path %>
+<% end %>
